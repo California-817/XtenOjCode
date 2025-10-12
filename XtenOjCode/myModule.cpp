@@ -1,4 +1,5 @@
 #include "myModule.h"
+#include "ojServer/servlets/rootServlet.h"
 namespace XtenOjCode
 {
     static Xten::Logger::ptr g_logger = XTEN_LOG_NAME("root");
@@ -38,30 +39,15 @@ namespace XtenOjCode
             if (hs)
             {
                 // 添加Servlet处理函数
-                //  hs->GetServletDispatch()->addServlet();
+                hs->GetServletDispatch()->addServlet("/",std::make_shared<oj_server::rootServlet>());
             }
         }
         return true;
     }
     // Server启动后执行
-    static int count = 0;
     bool MyModule::OnServerUp()
     {
         XTEN_LOG_INFO(g_logger) << "MyModule OnServerUp";
-        std::vector<Xten::TcpServer::ptr> servs;
-        Xten::Application::GetInstance()->GetServersByType("http", servs);
-        for (auto &serv : servs)
-        {
-            auto hs = std::dynamic_pointer_cast<Xten::http::HttpServer>(serv);
-            if (hs)
-            {
-                if (hs->GetTimer())
-                {
-                    hs->GetTimer()->AddTimer(1000, []()
-                                             { XTEN_LOG_DEBUG(g_logger) << "测试On Timer" << "count:" << count++; }, true);
-                }
-            }
-        }
         return true;
     }
 };

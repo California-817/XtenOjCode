@@ -1,0 +1,193 @@
+<!-- 这是oj网站访问根路径的网页 -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的个人OJ系统</title>
+  <style>
+    /* 重置默认样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #f5f5f7;
+      color: #1d1d1f;
+      line-height: 1.5;
+    }
+
+    /* 导航栏样式 */
+    .navbar {
+      width: 100%;
+      height: 48px;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 22px;
+    }
+
+    .navbar a {
+      color: #f5f5f7;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      padding: 10px 12px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .navbar a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    /* 主要内容区域 */
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 48px 22px 0;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: #1d1d1f;
+      line-height: 1.07143;
+    }
+
+    .hero-subtitle {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.004em;
+      margin-bottom: 30px;
+      color: #86868b;
+      line-height: 1.14286;
+    }
+
+    .hero-description {
+      font-size: 21px;
+      font-weight: 400;
+      letter-spacing: 0.012em;
+      margin-bottom: 40px;
+      color: #86868b;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #0071e3;
+      color: white;
+      font-size: 17px;
+      font-weight: 400;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid #0071e3;
+    }
+
+    .cta-button:hover {
+      background-color: #0077ed;
+      border-color: #0077ed;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 734px) {
+      .hero-title {
+        font-size: 40px;
+      }
+      
+      .hero-subtitle {
+        font-size: 24px;
+      }
+      
+      .hero-description {
+        font-size: 19px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 32px;
+      }
+      
+      .hero-subtitle {
+        font-size: 21px;
+      }
+      
+      .navbar {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-links">
+      <a href="#">首页</a>
+      <a href="/all_questions">题库</a>
+      <a href="#">竞赛</a>
+      <a href="#">讨论</a>
+      <a href="#">求职</a>
+    </div>
+    <div class="nav-links">
+      <a href="#">登录</a>
+    </div>
+  </nav>
+
+  <!-- 主要内容 -->
+  <div class="container">
+    <div class="content">
+      <h1 class="hero-title">欢迎来到我的OnlineJudge平台</h1>
+      <p class="hero-subtitle">专为编程爱好者打造的在线练习平台</p>
+      <p class="hero-description">这是我独立开发的一个现代化在线判题系统，提供丰富的编程题目和流畅的编码体验，助你提升编程技能。</p>
+      <a class="cta-button" href="/all_questions">开始编程之旅</a>
+    </div>
+  </div>
+</body>
+
+</html>

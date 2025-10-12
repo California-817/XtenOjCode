@@ -1,5 +1,5 @@
 #!/bin/sh
-
+#move脚本的作用就是将最新生成的动态库及服务器框架移动到bin可执行文件路径下
 if [ ! -d bin/module ]
 then
     mkdir bin/module
