@@ -6,7 +6,9 @@ then
 else
     unlink bin/XtenOjCode
     unlink bin/module/libXtenOjCode.so
+    unlink bin/module/libCompileRun.so
 fi
 
 cp Xten/bin/XtenFrame bin/XtenOjCode
 cp lib/libXtenOjCode.so bin/module/
+cp lib/libCompileRun.so bin/module/

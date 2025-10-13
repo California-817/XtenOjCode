@@ -18,6 +18,7 @@ namespace XtenOjCode
         virtual bool OnServerReady() override;
         // Server启动后执行
         virtual bool OnServerUp() override;
+        
     };
 }
 #endif

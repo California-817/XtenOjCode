@@ -31,9 +31,9 @@ namespace XtenOjCode
     bool MyModule::OnServerReady()
     {
         XTEN_LOG_INFO(g_logger) << "MyModule OnServerReady";
-        std::vector<Xten::TcpServer::ptr> servs;
-        Xten::Application::GetInstance()->GetServersByType("http", servs);
-        for (auto &serv : servs)
+        std::vector<Xten::TcpServer::ptr> HttpServs; //ojServer
+        Xten::Application::GetInstance()->GetServersByType("http", HttpServs);
+        for (auto &serv : HttpServs)
         {
             auto hs = std::dynamic_pointer_cast<Xten::http::HttpServer>(serv);
             if (hs)

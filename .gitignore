@@ -31,3 +31,5 @@
 /bin/module
 /bin/XtenOjCode
 /lib
+/XtenOjCode/proto/*.pb.h
+/XtenOjCode/proto/*.pb.cc

@@ -1,5 +1,5 @@
-#ifndef __OJSERVER_ROOT_SERVLET_J__
-#define __OJSERVER_ROOT_SERVLET_J__
+#ifndef __OJSERVER_ROOT_SERVLET_H__
+#define __OJSERVER_ROOT_SERVLET_H__
 #include "Xten.h"
 namespace XtenOjCode
 {
@@ -9,7 +9,7 @@ namespace XtenOjCode
         {
         public:
             rootServlet()
-                : Servlet("root")
+                : Servlet("Xten/1.0.0/root")
             {
             }
             /**

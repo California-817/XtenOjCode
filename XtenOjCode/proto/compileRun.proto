@@ -1,0 +1,19 @@
+syntax = "proto3";
+package XtenOjCode;
+
+//编译运行请求
+message CompileRunReq
+{
+    string code=1; //代码
+    string input=2; //用户输入
+    int32 cpuTimeLimit=3; //cpu运行时间限制
+    int32 MemoryLimit=4; //内存限制
+}
+//编译运行响应
+message CompileRunRsp
+{
+    int32 status=1; //状态码
+    string reason=2; //原因
+    string stdout=3; //标准输出
+    string stderr=4; //错误输出
+}
