@@ -5,7 +5,7 @@
 #include<unistd.h>
 namespace XtenOjCode
 {
-    Xten::Logger::ptr g_logger = XTEN_LOG_NAME("root");
+    static Xten::Logger::ptr g_logger = XTEN_LOG_NAME("root");
     int Compile::compile(const std::string &srcFile)
     {
         // 创建子进程并让g++进行编译

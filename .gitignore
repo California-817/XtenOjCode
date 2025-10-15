@@ -33,3 +33,6 @@
 /lib
 /XtenOjCode/proto/*.pb.h
 /XtenOjCode/proto/*.pb.cc
+/bin/compileRun/module
+/bin/compileRun/temp
+/bin/compileRun/CompileRun

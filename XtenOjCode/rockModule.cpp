@@ -31,6 +31,22 @@ namespace XtenOjCode
         }
         return "ErrorCode=UnKnown";
     }
+    // 删除一次编译运行产生的临时文件
+    static void UnLinkTmpFile(const char *filePath)
+    {
+#define XX(suffix)                                                                        \
+    if (OjUtil::FileUtil::HasFile(OjUtil::FileUtil::AddSuffix(suffix, filePath).c_str())) \
+    {                                                                                     \
+        unlink(OjUtil::FileUtil::AddSuffix(suffix, filePath).c_str());                    \
+    }
+        XX(".cpp");
+        XX(".exe");
+        XX(".compileOut");
+        XX(".compileErr");
+        XX(".runOut");
+        XX(".runErr");
+#undef XX
+    }
     // 处理Rock请求函数
     bool CompileRunModule::OnHandleRockRequest(Xten::RockRequest::ptr req, Xten::RockResponse::ptr rsp, Xten::RockStream::ptr stream)
     {
@@ -132,6 +148,7 @@ namespace XtenOjCode
         }
         rspData.set_stderr(OjUtil::FileUtil::Read(errFile));
         rspData.set_stdout(OjUtil::FileUtil::Read(outFile));
+        UnLinkTmpFile(filename.c_str()); // 删除临时文件
         return rsp->SetDataAsProtoBuf(rspData) &&
                (error == ErrorCode::compileFailed || error == ErrorCode::runFailed || error == ErrorCode::success);
     }
@@ -183,3 +200,19 @@ namespace XtenOjCode
         return true;
     }
 } // namespace XtenOjCode
+
+// 创建Module的函数-防止函数名修饰
+extern "C"
+{
+    Xten::Module *CreateModule()
+    {
+        Xten::Module *mod = new XtenOjCode::CompileRunModule();
+        XTEN_LOG_INFO(XtenOjCode::g_logger) << "CreateModule: " << mod;
+        return mod;
+    }
+    void DestoryModule(Xten::Module *ptr)
+    {
+        delete ptr;
+        XTEN_LOG_INFO(XtenOjCode::g_logger) << "DestoryModule: " << ptr;
+    }
+}

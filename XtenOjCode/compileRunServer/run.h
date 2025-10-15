@@ -6,10 +6,7 @@ namespace XtenOjCode
     class Run
     {
         public:
-        static int run(const char* binFile,const char* input,int cpuTimeLimit,int memoryLimit)
-        {
-
-        }
+        static int run(const char* binFile,const char* input,int cpuTimeLimit,int memoryLimit);
     };
 } // namespace XtenOjCode
 

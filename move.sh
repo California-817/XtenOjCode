@@ -3,12 +3,15 @@
 if [ ! -d bin/module ]
 then
     mkdir bin/module
+    mkdir bin/compileRun/module
 else
     unlink bin/XtenOjCode
+    unlink bin/compileRun/CompileRun
     unlink bin/module/libXtenOjCode.so
-    unlink bin/module/libCompileRun.so
+    unlink bin/compileRun/module/libCompileRun.so
 fi
 
 cp Xten/bin/XtenFrame bin/XtenOjCode
+cp Xten/bin/XtenFrame bin/compileRun/CompileRun
 cp lib/libXtenOjCode.so bin/module/
-cp lib/libCompileRun.so bin/module/
+cp lib/libCompileRun.so bin/compileRun/module/

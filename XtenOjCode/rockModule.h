@@ -28,13 +28,13 @@ namespace XtenOjCode
         // Server启动后执行
         virtual bool OnServerUp() override;
          // 链接建立的函数
-        virtual bool OnConnect(Xten::Stream::ptr stream) = 0;
+        virtual bool OnConnect(Xten::Stream::ptr stream) override;
         // 连接断开函数
-        virtual bool OnDisConnect(Xten::Stream::ptr stream) = 0;
+        virtual bool OnDisConnect(Xten::Stream::ptr stream) override;
         // 处理Rock请求函数
-        virtual bool OnHandleRockRequest(Xten::RockRequest::ptr req, Xten::RockResponse::ptr rsp, Xten::RockStream::ptr stream) = 0;
+        virtual bool OnHandleRockRequest(Xten::RockRequest::ptr req, Xten::RockResponse::ptr rsp, Xten::RockStream::ptr stream) override;
         // 处理Rock通知函数(对服务端基本无意义)
-        virtual bool OnHandleRockNotify(Xten::RockNotify::ptr notify, Xten::RockStream::ptr stream) = 0;
+        virtual bool OnHandleRockNotify(Xten::RockNotify::ptr notify, Xten::RockStream::ptr stream) override;
     private:
         //处理编译运行的cmd
         bool handleCompileRun(Xten::RockRequest::ptr req, Xten::RockResponse::ptr rsp, Xten::RockStream::ptr stream);

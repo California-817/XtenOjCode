@@ -79,7 +79,6 @@ namespace XtenOjCode
                 if (!ifs.is_open())
                 {
                     // log
-                    XTEN_LOG_ERROR(g_logger) << "load " << filePath << " failed!!!";
                     return "";
                 }
                 // 打开成功
