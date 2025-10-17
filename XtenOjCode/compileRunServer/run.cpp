@@ -54,8 +54,8 @@ namespace XtenOjCode
         {
             // 父进程
             int status = 0;
-            int ret = waitpid(ret, &status, 0);
-            if (ret > 0)
+            int waitret = waitpid(ret, &status, 0);
+            if (waitret > 0)
             {
                 if(WIFEXITED(status))
                 {

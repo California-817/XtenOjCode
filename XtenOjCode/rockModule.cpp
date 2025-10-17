@@ -51,19 +51,27 @@ namespace XtenOjCode
     bool CompileRunModule::OnHandleRockRequest(Xten::RockRequest::ptr req, Xten::RockResponse::ptr rsp, Xten::RockStream::ptr stream)
     {
         // 记录请求次数 todo
+        auto begin = Xten::TimeUitl::GetCurrentMS();
         OjRockCmd::RockCmd cmd = (OjRockCmd::RockCmd)req->GetCmd();
         switch (cmd)
         {
         case OjRockCmd::RockCmd::CompileRun:
+        {
             /* code */
-            return handleCompileRun(req, rsp, stream);
+            // return handleCompileRun(req, rsp, stream);
+            auto ret = handleCompileRun(req, rsp, stream);
+            auto end = Xten::TimeUitl::GetCurrentMS();
+            XTEN_LOG_ERROR(g_logger) << "handle used time=" << end - begin;
+            return ret;
+        }
             break;
         // other cmd ...
         default:
             XTEN_LOG_ERROR(g_logger) << "rock req cmd is invaild!!!";
             break;
         }
-        return false;
+
+        return true;
     }
     // 编译运行处理函数
     bool CompileRunModule::handleCompileRun(Xten::RockRequest::ptr req, Xten::RockResponse::ptr rsp, Xten::RockStream::ptr stream)
@@ -80,6 +88,7 @@ namespace XtenOjCode
                 error = ErrorCode::srcCodeNull;
                 break;
             }
+            XTEN_LOG_DEBUG(g_logger) << "code=" << reqData->code();
             if (!Xten::FileUtil::MakeDir(filename))
             {
                 XTEN_LOG_ERROR(g_logger) << "mkdir " << filename << " failed!!!";
@@ -149,6 +158,8 @@ namespace XtenOjCode
         rspData.set_stderr(OjUtil::FileUtil::Read(errFile));
         rspData.set_stdout(OjUtil::FileUtil::Read(outFile));
         UnLinkTmpFile(filename.c_str()); // 删除临时文件
+        rsp->SetResult(error);
+        rsp->SetResultStr(ErrorCodeToString(error));
         return rsp->SetDataAsProtoBuf(rspData) &&
                (error == ErrorCode::compileFailed || error == ErrorCode::runFailed || error == ErrorCode::success);
     }

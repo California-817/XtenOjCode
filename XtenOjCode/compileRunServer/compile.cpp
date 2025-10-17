@@ -37,15 +37,18 @@ namespace XtenOjCode
         {
             // 父进程
             int status = 0;
-            int ret = waitpid(ret, &status, 0);
-            if (ret > 0 && WIFEXITED(status))
+            int waitret = waitpid(ret, &status, 0);
+            if (waitret > 0 && WIFEXITED(status))
                 // 看是否生成了.exe文件
                 return OjUtil::FileUtil::HasFile(
                            OjUtil::FileUtil::AddSuffix(".exe", srcFile).c_str())
                            ? 0
                            : -1;
             else
+            {
+                XTEN_LOG_ERROR(g_logger)<<"waitpid ret="<<waitret<<", errstr="<<strerror(errno);
                 return -2;
+            }
         }
         else
         {

@@ -36,10 +36,12 @@ namespace XtenOjCode
         Xten::RockRequest::ptr rockreq = std::make_shared<Xten::RockRequest>();
         rockreq->SetCmd((uint32_t)cmd);
         rockreq->SetDataAsProtoBuf(req);
-        auto result = Request(rockreq, timeout_ms); //这里进行rpc请求不会阻塞当前请求协程
+        auto result = Request(rockreq, timeout_ms); //这里进行rpc请求不会阻塞当前线程 当前请求协程会在之后响应到来后重新调度
         do
         {
-            XTEN_LOG_DEBUG(g_logger) << result->toString();
+            if(!result)
+                break;
+            XTEN_LOG_DEBUG(g_logger) << result->toString(); //debug
             if (!result->response)
             {
                 // 没有响应
